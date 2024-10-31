@@ -1,0 +1,29 @@
+.nav {
+    width: 20%;
+    height: 930px;
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lists-ul {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.nav a {
+    margin: 0 30px;
+    padding: 5px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.nav a:hover {
+    color: rgba(112, 112, 112, 0.568);
+}
