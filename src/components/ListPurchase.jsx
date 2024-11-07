@@ -16,15 +16,15 @@ const ListPurchase = () => {
           endereco: "Rua A, 123",
         },
         {
-          id: 2,
-          nome: "Produto 2",
-          preco: 15.99,
+          id: 1,
+          nome: "Produto 1",
+          preco: 10.99,
           detalhes: [{
-            item: "Detalhe D",
-            item2: "Detalhe E",
-            item3: "Detalhe F",
+            item: "Detalhe A",
+            item2: "Detalhe B",
+            item3: "Detalhe C",
           }],
-          endereco: "Rua B, 456",
+          endereco: "Rua A, 123",
         }
       ]);
 
