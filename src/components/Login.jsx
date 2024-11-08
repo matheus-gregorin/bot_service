@@ -1,11 +1,25 @@
 import "./css/Login.css"
 
-// Library
+// UseCases
+import ApiService from '../useCases/fetchUseCase';
 
 //Url
-// const url = 'http://localhost:8000/api/auth/login'
+const url = 'http://localhost:8000'
 
 const Login = () => {
+
+  const HandleLogin = () => {
+
+    var email = document.getElementById('email').value
+    var password = document.getElementById('password').value
+
+    const api = new ApiService(url)
+    api.post('/api/auth/login', {email: email, password: password})
+    .then(
+      response => console.log(response) // Logica aqui
+    );
+
+  }
 
   return (
     <div className="login">
@@ -26,7 +40,7 @@ const Login = () => {
           <div className="recovery-password-container"> <a href="/"> Recuperar senha</a> </div>
 
           <div className="button-conatiner">
-            <button> Entrar </button>
+            <button onClick={HandleLogin}> Entrar </button>
           </div>
 
         </div>
