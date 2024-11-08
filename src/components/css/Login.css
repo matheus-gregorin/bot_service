@@ -1,0 +1,97 @@
+.login {
+    width: 70%;
+    height: 928px;
+    background: linear-gradient(to top right, #808080, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 701px) {
+    .login {
+        width: 75%;
+    }
+}
+
+.login-container {
+    width: 60%;
+    height: 580px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 4px 15px 5px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+    height: 550px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+label {
+    margin: 10px 0 5px 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input {
+    height: 35px;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.459);
+    border-radius: 10px;
+}
+
+.error-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin: 20px 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.recovery-password-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    margin: 10px 0 0 0;
+}
+
+.button-conatiner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    height: 35px;
+    width: 50%;
+    padding: 15px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.459);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: rgba(197, 197, 197, 0.795);
+    color: rgba(0, 0, 0, 0.781);
+}
