@@ -1,5 +1,5 @@
 .login {
-    width: 70%;
+    width: 100%;
     height: 928px;
     background: linear-gradient(to top right, #808080, #ffffff);
     display: flex;
@@ -15,7 +15,7 @@
 }
 
 .login-container {
-    width: 60%;
+    width: 40%;
     height: 580px;
     display: flex;
     flex-direction: column;
@@ -79,7 +79,7 @@ a {
 
 button {
     height: 35px;
-    width: 50%;
+    width: 100%;
     padding: 15px;
     margin-top: 30px;
     display: flex;
@@ -94,4 +94,16 @@ button {
 button:hover {
     background-color: rgba(197, 197, 197, 0.795);
     color: rgba(0, 0, 0, 0.781);
+}
+
+.block {
+    width: 30%;
+    height: 928px;
+    background-color: rgba(27, 27, 27, 0.781);
+}
+
+@media (max-width: 701px) {
+    .block {
+        width: 25%;
+    }
 }

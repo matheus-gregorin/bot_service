@@ -15,15 +15,3 @@ html, body {
     height: 930px;
     width: 100%;
 }
-
-.block {
-    width: 30%;
-    height: 928px;
-    background-color: rgba(27, 27, 27, 0.781);
-}
-
-@media (max-width: 701px) {
-    .block {
-        width: 25%;
-    }
-}

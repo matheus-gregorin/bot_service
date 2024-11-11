@@ -60,7 +60,10 @@ export default class ApiService {
         return data;
       } catch (error) {
         console.error('Erro na requisição:', error);
-        throw error;
+        return {
+          success: false,
+          message: error.message
+        };
       }
     }
   }
