@@ -25,24 +25,22 @@ const Login = () => {
     const isPasswordValid = validatePassword(password);
 
     if (!isEmailValid) {
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Email inválido',
-        icon: 'error',
-        timer: 2000,
-        width: 500
-      });
-      return
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Email inválido',
+          icon: 'error',
+          confirmButtonText: 'Fechar'
+        });
+        return
     }
     if (!isPasswordValid) {
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Senha inválida',
-        icon: 'error',
-        timer: 2000,
-        width: 500
-      });
-      return
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Senha inválida',
+          icon: 'error',
+          confirmButtonText: 'Fechar'
+        });
+        return
     }
 
     const api = new ApiService(url)
@@ -68,6 +66,7 @@ const Login = () => {
           title: 'Sucess',
           text: 'Login realizado com sucesso!',
           icon: 'success',
+          timer: 3000
         });
 
         // Indo para pagina Home
@@ -100,13 +99,13 @@ const Login = () => {
 
           <label htmlFor="password"> Senha: </label>
           <input id="password" type="password" />
-          const navigate = useNavigate();
+
           <div className="error-container"> <p></p> </div>
 
           <div className="recovery-password-container"> <a href="/"> Recuperar senha</a> </div>
 
           <div className="button-conatiner">
-            <button onClick={HandleLogin}> Entrar </button>
+            <button className="button-send" onClick={HandleLogin}> Entrar </button>
           </div>
 
         </div>
