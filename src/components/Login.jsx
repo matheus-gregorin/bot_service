@@ -61,16 +61,21 @@ const Login = () => {
 
         // Success
         sessionStorage.setItem('x-t', response.token);
+        sessionStorage.setItem('x-t-e', response.expire_in);
         
         Swal.fire({
           title: 'Sucess',
           text: 'Login realizado com sucesso!',
           icon: 'success',
-          timer: 3000
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false
         });
 
         // Indo para pagina Home
-        navigate('/home')
+        setTimeout(() => {
+          navigate('/home')
+        }, 2200);
 
       });
   }
