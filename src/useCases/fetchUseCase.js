@@ -1,3 +1,4 @@
+const token = sessionStorage.getItem('x-t')
 export default class ApiService {
 
     constructor(baseURL) {
@@ -45,6 +46,8 @@ export default class ApiService {
         method,
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + token
         },
         body: body ? JSON.stringify(body) : null,
       };

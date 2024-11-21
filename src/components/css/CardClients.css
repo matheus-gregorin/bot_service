@@ -1,0 +1,60 @@
+.card-client {
+    height: 250px;
+    width: 320px;
+    background: linear-gradient(to top right, #cecece, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin: 0 10px 0 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 5px -3px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.name {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    font-weight: bold;
+    overflow-wrap: break-word;
+}
+
+.email {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    overflow-x: auto;
+    overflow-wrap: break-word;
+}
+
+.number {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    overflow-x: auto;
+    overflow-wrap: break-word;
+}
+
+.label-address {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    overflow-x: auto;
+    font-weight: bold;
+    overflow-wrap: break-word;
+}
+
+.address {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2px;
+    overflow-x: auto;
+    overflow-wrap: break-word;
+}

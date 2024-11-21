@@ -8,12 +8,6 @@
     align-items: center;
 }
 
-/* @media (max-width: 701px) {
-    .login {
-        width: 75%;
-    }
-} */
-
 .login-container {
     width: 40%;
     height: 580px;
@@ -110,8 +104,8 @@ button:hover {
     background-color: rgba(27, 27, 27, 0.781);
 }
 
-@media (max-width: 701px) {
-    .block {
-        width: 25%;
+@media (max-width: 850px) {
+    .login-container {
+        width: 80%;
     }
 }

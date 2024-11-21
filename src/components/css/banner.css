@@ -1,0 +1,24 @@
+.banner {
+    height: 365px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-container {
+    height: 365px;
+    width: 95%;
+    background-image: url(/public/DALL.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+}
+
+/* @media (max-width: 500px) {
+    .banner-container {
+        height: 306px;
+        width: 90%;
+    }
+} */

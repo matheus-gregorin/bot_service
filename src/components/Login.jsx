@@ -9,9 +9,13 @@ import ApiService from '../useCases/fetchUseCase';
 import { useNavigate } from "react-router-dom";
 
 //Url
-const url = 'http://localhost:8000'
+const url = process.env.REACT_APP_API_URL || 'https://bottdevapi.sytes.net'
 
 const Login = () => {
+
+  sessionStorage.setItem('x-t', '');
+  sessionStorage.setItem('x-t-e', '');
+  sessionStorage.setItem('uuid', '');
 
   //Navegador
   const navigate = useNavigate();
@@ -62,6 +66,7 @@ const Login = () => {
         // Success
         sessionStorage.setItem('x-t', response.token);
         sessionStorage.setItem('x-t-e', response.expire_in);
+        sessionStorage.setItem('uuid', response.uuid);
         
         Swal.fire({
           title: 'Sucess',

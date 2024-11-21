@@ -2,9 +2,24 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
 
-  const isAuthenticated = sessionStorage.getItem('x-t');
+  const xt = sessionStorage.getItem('x-t');
+  const uuid = sessionStorage.getItem('uuid');
 
-  return isAuthenticated ? children : <Navigate to="/" />;
+  if(
+    xt !== null &&
+    xt !== '' &&
+    xt !== ' ' &&
+    uuid !== null &&
+    uuid !== '' &&
+    uuid !== ' '
+  )
+  {
+    return children
+
+  } else {
+    return <Navigate to="/" />
+
+  }
 };
 
 export default PrivateRoute;
