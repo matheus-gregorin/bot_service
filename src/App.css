@@ -6,12 +6,12 @@
   }
   
 html, body {
-    height: 100%;
+    height: 1050px;
 }
 
 .App {
     display: flex;
     flex-direction: row;
-    height: 930px;
+    height: 1050px;
     width: 100%;
 }

@@ -1,5 +1,5 @@
 .banner {
-    height: 365px;
+    height: 320px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,17 +8,16 @@
 }
 
 .banner-container {
-    height: 365px;
+    height: 310px;
     width: 95%;
-    background-image: url(/public/DALL.png);
+    background-image: url(/public/pexels-taryn-elliott-3889827.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 15px;
 }
 
-/* @media (max-width: 500px) {
+@media (max-width: 800px) {
     .banner-container {
-        height: 306px;
-        width: 90%;
+        background-image: url(/public/mercado-banner.png);
     }
-} */
+}

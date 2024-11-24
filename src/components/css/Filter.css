@@ -1,0 +1,53 @@
+.filter-container {
+    height: 280px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.filter-label p{
+    height: 15px;
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+.filter-input-container{
+    max-height: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.filter-input-container input {
+    height: 30px;
+    padding: 10px;
+    width: 98%;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.filter-button-container{
+    height: 50px;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.filter-button-container button{
+    height: 35px;
+    width: 50%;
+    padding: 5px;
+    margin: 10px 0;
+    background-color: rgba(128, 128, 128, 0.466);
+}
+
+#active {
+    height: 15px;
+}
+
+#order_by {
+    height: 15px;
+}

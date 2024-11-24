@@ -3,7 +3,9 @@ import Login from "./components/Login"
 
 // Css
 import "./App.css";
+
 import Home from "./pages/Home";
+import Client from "./pages/Client";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./useCases/privateRoute";
@@ -22,11 +24,11 @@ function App() {
             </PrivateRoute>
           }/>
 
-          {/* <Route path="/home" element={
+          <Route path="/clients" element={
             <PrivateRoute>
-              <Home />
+              <Client />
             </PrivateRoute>
-          }/> */}
+          }/>
 
         </Routes>
       </Router>

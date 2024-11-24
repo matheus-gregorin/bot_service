@@ -1,0 +1,13 @@
+td {
+    padding: 5px;
+    text-align: left;
+    overflow-x: scroll;
+    width: 30%;
+}
+
+.active {
+    color: green;
+}
+.inactive {
+    color: red;
+}

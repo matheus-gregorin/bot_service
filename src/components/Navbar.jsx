@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from "react";
 import ApiService from "../useCases/fetchUseCase";
+import { AiOutlineFundProjectionScreen, AiOutlineHome, AiOutlineLogout, AiOutlineOrderedList, AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
 
 //Url
 const url = process.env.REACT_APP_API_URL || 'https://bottdevapi.sytes.net'
@@ -14,8 +15,9 @@ const token = sessionStorage.getItem('x-t')
 const Navbar = () => {
 
   const divRef = useRef(null);
+  const navContainer = useRef(null);
 
-  const [operator, setOperator] = useState([{ name: "" }])
+  const [operator, setOperator] = useState([{ name: "..." }])
 
   useEffect(() => {
 
@@ -107,7 +109,7 @@ const Navbar = () => {
   }
 
   return (
-    <div id="nav-container" className='nav-container'>
+    <div ref={navContainer} className='nav-container'>
 
     <div className="img"
         onMouseEnter={mostrarOutraDiv}
@@ -116,7 +118,11 @@ const Navbar = () => {
       <div ref={divRef} className="foto"> Alterar foto </div>
     </div>
 
-    <p> { operator.name } </p>
+    <p> 
+      { 
+        operator === null ? '' : operator.name
+      } 
+    </p>
 
     <p> Status: { operator.status } </p>
 
@@ -124,12 +130,12 @@ const Navbar = () => {
 
       <nav>
         <ul>
-          <li onClick={() => Nav("/home") }> Home </li>
-          <li onClick={() => Nav("/home") }> Clientes </li>
-          <li onClick={() => Nav("/home") }> Listas </li>
-          <li onClick={() => Nav("/home") }> Graficos </li>
-          <li onClick={() => Nav("/home") }> Ajustes </li>
-          <li onClick={() => HandleLogout() }> Sair </li>
+          <li onClick={() => Nav("/home") }> <AiOutlineHome size={20} style={{ margin: '0 4px 4px 0' }} /> Home </li>
+          <li onClick={() => Nav("/clients") }> <AiOutlineProfile size={20} style={{ margin: '0 4px 4px 0' }} /> Clientes </li>
+          <li onClick={() => Nav("/home") }> <AiOutlineOrderedList size={20} style={{ margin: '0 4px 4px 0' }} /> Listas </li>
+          <li onClick={() => Nav("/home") }> <AiOutlineFundProjectionScreen size={20} style={{ margin: '0 4px 4px 0' }} /> Graficos </li>
+          <li onClick={() => Nav("/home") }> <AiOutlineSetting size={20} style={{ margin: '0 4px 4px 0' }} /> Ajustes </li>
+          <li onClick={() => HandleLogout() }>  <AiOutlineLogout size={20} style={{ margin: '0 4px 4px 0' }} /> Sair </li>
         </ul>
       </nav>
     </div>
