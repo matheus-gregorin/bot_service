@@ -3,19 +3,19 @@ import React from 'react'
 import "./css/Filter.css"
 
 //Url
-const url = process.env.REACT_APP_API_URL || 'https://bottdevapi.sytes.net'
+const url = process.env.REACT_APP_API_URL
 const token = sessionStorage.getItem('x-t')
 
 const Filter = ({ setClients }) => {
 
     const HandleFilter = () => {
 
-        var endpoint = '/api/clients/all?paginator=5'
+        var endpoint = '/api/clients/all?paginator=10'
 
         var name = document.getElementById('name').value
         var date = document.getElementById('date_of_birth').value
-        var active = document.getElementById('active').value
-        var order = document.getElementById('order_by').value
+        var active = document.getElementById('active').checked
+        var order = document.getElementById('order_by').checked
 
         if(name !== null){
             endpoint += "&name=" + name
@@ -25,16 +25,14 @@ const Filter = ({ setClients }) => {
             endpoint += "&date_of_birth=" + date
 
         }
-        if(active !== null && active === 'on'){
+        if(active !== null && active){
             endpoint += "&active=true"
 
         }
-        if(order !== null && order === 'on'){
+        if(order !== null && order){
             endpoint += "&order_by=desc"
 
         }
-
-        console.log(endpoint)
 
         const fetchData = async () => {
             try {
@@ -75,7 +73,7 @@ const Filter = ({ setClients }) => {
 
         <div className='filter-input-container'>
             Ativo: <input id="active" type="checkbox" />
-            Order decrescente: <input id='order_by' type="checkbox" />
+            Order decrescente: <input id='order_by' type="checkbox"/>
         </div> 
 
         <div className='filter-button-container'>

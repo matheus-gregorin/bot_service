@@ -8,20 +8,23 @@ import Filter from "../components/Filter";
 import TableClients from "../components/TableClients";
 
 //Url
-const url = process.env.REACT_APP_API_URL || 'https://bottdevapi.sytes.net'
+const url = process.env.REACT_APP_API_URL
 const token = sessionStorage.getItem('x-t')
 
 const Client = () => {
 
   const [clients, setClients] = useState([]);
+  const [paginator, setPaginator] = useState(10);
+  const [total, setTotal] = useState(10);
   const [isOpen, setIsOpen] = useState(true);
+  var slice = 0
 
   useEffect(() => {
 
     const fetchData = async () => {
       try {
 
-        const response = await fetch(url + '/api/clients/all?paginator=10', {
+        const response = await fetch(url + '/api/clients/all?paginator=' + paginator, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -32,6 +35,7 @@ const Client = () => {
         const data = await response.json();
 
         setClients(data.clients)
+        setTotal(data.total)
 
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
@@ -46,7 +50,6 @@ const Client = () => {
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
-
 
   return (
     <div className="master">
@@ -92,12 +95,13 @@ const Client = () => {
                 <tr>
                     <td colspan="5" className="footer-table">
                         <div class="pagination">
-                            <button disabled>«</button>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button>4</button>
-                            <button>»</button>
+
+                        {
+                          Array.from({ length: Math.ceil(total / 10) }).map((_, index) => (
+                            <button key={index}> {index + 1} </button>
+                          ))
+                        }
+
                         </div>
                     </td>
                 </tr>

@@ -9,7 +9,7 @@ import ApiService from '../useCases/fetchUseCase';
 import { useNavigate } from "react-router-dom";
 
 //Url
-const url = process.env.REACT_APP_API_URL || 'https://bottdevapi.sytes.net'
+const url = process.env.REACT_APP_API_URL
 
 const Login = () => {
 

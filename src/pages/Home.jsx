@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
 
 //Url
-const url = process.env.REACT_APP_API_URL || 'https://bottdevapi.sytes.net'
+const url = process.env.REACT_APP_API_URL
 const token = sessionStorage.getItem('x-t')
 
 const Home = () => {

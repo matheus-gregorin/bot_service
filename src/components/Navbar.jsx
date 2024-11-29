@@ -8,7 +8,7 @@ import ApiService from "../useCases/fetchUseCase";
 import { AiOutlineFundProjectionScreen, AiOutlineHome, AiOutlineLogout, AiOutlineOrderedList, AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
 
 //Url
-const url = process.env.REACT_APP_API_URL || 'https://bottdevapi.sytes.net'
+const url = process.env.REACT_APP_API_URL
 const uuid = sessionStorage.getItem('uuid')
 const token = sessionStorage.getItem('x-t')
 
