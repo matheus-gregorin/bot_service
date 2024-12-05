@@ -49,12 +49,12 @@ hr {
 }
 
 nav {
-    height: 610px;
+    height: 600px;
     width: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px 0 0 0;
+    margin: 30px 0 0 0;
 }
 
 p {
@@ -114,6 +114,7 @@ li:hover {
     }
 
     nav {
+        height: 510px;
         margin: 4px 0 0 0;
     }
 
@@ -138,6 +139,9 @@ li:hover {
         background-size: cover;
         background-repeat: no-repeat;
     }
+    nav {
+        height: 510px;
+    }
 }
 
 @media (min-width: 801px) and (max-width: 1030px) {
@@ -152,5 +156,8 @@ li:hover {
         width: 155px;
         background-size: cover;
         background-repeat: no-repeat;
+    }
+    nav {
+        height: 510px;
     }
 }

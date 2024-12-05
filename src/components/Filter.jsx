@@ -6,32 +6,51 @@ import "./css/Filter.css"
 const url = process.env.REACT_APP_API_URL
 const token = sessionStorage.getItem('x-t')
 
-const Filter = ({ setClients }) => {
+const Filter = ({ setClients, setOrderBy }) => {
 
     const HandleFilter = () => {
 
-        var endpoint = '/api/clients/all?paginator=10'
+        var endpoint = '/api/clients/all?'
 
         var name = document.getElementById('name').value
         var date = document.getElementById('date_of_birth').value
         var active = document.getElementById('active').checked
         var order = document.getElementById('order_by').checked
 
-        if(name !== null){
+        var firstFlter = true
+
+        if(name !== null && name !== '' && name !== ' '){
+          if(firstFlter){
+            endpoint += "name=" + name
+            firstFlter = false
+          } else {
             endpoint += "&name=" + name
-
+          }
         }
-        if(date !== null){
+        if(date !== null && date !== '' && date !== ' '){
+          if(firstFlter){
+            endpoint += "date_of_birth=" + date
+            firstFlter = false
+          } else {
             endpoint += "&date_of_birth=" + date
-
+          }
         }
         if(active !== null && active){
-            endpoint += "&active=true"
-
+          if(firstFlter){
+            endpoint += "activate=true"
+            firstFlter = false
+          } else {
+            endpoint += "&activate=true"
+          }
         }
         if(order !== null && order){
+          setOrderBy(true)
+          if(firstFlter){
+            endpoint += "order_by=desc"
+            firstFlter = false
+          } else {
             endpoint += "&order_by=desc"
-
+          }
         }
 
         const fetchData = async () => {
@@ -46,6 +65,7 @@ const Filter = ({ setClients }) => {
               });
       
               const data = await response.json();
+              console.log(data, endpoint)
 
               setClients(data.clients)
       
@@ -64,16 +84,16 @@ const Filter = ({ setClients }) => {
         <div className='filter-label'> <p> Barra de pesquisa: </p> </div>
 
         <div className='filter-input-container'>
-            Nome: <input id="name" type="text" />
+            <p> Nome: </p> <input id="name" type="text" />
         </div>
 
         <div className='filter-input-container'>
-            Data de Nascimento: <input id="date_of_birth" type="text" />
+           <p> Data de Nascimento: </p> <input id="date_of_birth" type="text" />
         </div>
 
         <div className='filter-input-container'>
-            Ativo: <input id="active" type="checkbox" />
-            Order decrescente: <input id='order_by' type="checkbox"/>
+            <p> Ativo: </p> <input id="active" type="checkbox" />
+            <p> Decrescente: </p> <input id='order_by' type="checkbox"/>
         </div> 
 
         <div className='filter-button-container'>

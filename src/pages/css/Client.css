@@ -97,4 +97,23 @@ tfoot {
     th, td {
         font-size: 0.6rem;
     }
+
+    .pagination button {
+        width: 50%;
+        padding: 8px 8px;
+    }
+}
+
+@media (min-width: 520px) and (max-width: 800px) {
+    .pagination button {
+        width: 55%;
+        padding: 8px 8px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1030px) {
+    .pagination button {
+        width: 58%;
+        padding: 8px 8px;
+    }
 }

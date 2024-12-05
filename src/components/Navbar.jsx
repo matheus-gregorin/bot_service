@@ -51,7 +51,7 @@ const Navbar = () => {
     Swal.fire({
       title: 'Carregando...',
       text: '',
-      timer: 1000,
+      timer: 2200,
       width: 250,
       timerProgressBar: true,
       showConfirmButton: false
