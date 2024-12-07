@@ -51,6 +51,8 @@ const Filter = ({ setClients, setOrderBy }) => {
           } else {
             endpoint += "&order_by=desc"
           }
+        } else {
+          setOrderBy(false)
         }
 
         const fetchData = async () => {
@@ -65,7 +67,6 @@ const Filter = ({ setClients, setOrderBy }) => {
               });
       
               const data = await response.json();
-              console.log(data, endpoint)
 
               setClients(data.clients)
       

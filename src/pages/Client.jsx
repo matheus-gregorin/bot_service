@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import Filter from "../components/Filter";
 import TableClients from "../components/TableClients";
 import Swal from "sweetalert2";
+import InfoClient from "../components/InfoClient";
 
 //Url
 const url = process.env.REACT_APP_API_URL
@@ -15,9 +16,11 @@ const token = sessionStorage.getItem('x-t')
 const Client = () => {
 
   const [clients, setClients] = useState([]);
+  const [client, setClient] = useState([]);
   const [paginator] = useState(10);
   const [total, setTotal] = useState(10);
   const [isOpen, setIsOpen] = useState(true);
+  const [isPopUp, setPopUp] = useState(false);
   const [orderBy, setOrderBy] = useState(false);
 
   useEffect(() => {
@@ -108,7 +111,7 @@ const Client = () => {
         <div className="Clients">
 
           <div className="FilterBars">
-              <Filter setClients={setClients} setOrderBy={setOrderBy} />
+              <Filter setClients={setClients} setOrderBy={setOrderBy}/>
           </div>
 
           <div className="table">
@@ -125,7 +128,7 @@ const Client = () => {
               </thead>
 
               {clients.map((client) => (
-                  <TableClients key={client.uuid} client={client} />
+                  <TableClients key={client.uuid} client={client} isPopUp={isPopUp} setPopUp={setPopUp} setClient={setClient}/>
               ))}
 
               <tfoot>
@@ -149,6 +152,8 @@ const Client = () => {
           </div>
 
         </div>
+
+        { isPopUp ? <div className="pop-up"> <InfoClient client={client} /> </div> : '' }
 
       </div>
     </div>

@@ -1,8 +1,18 @@
+tr {
+    cursor: pointer;
+}
+
 td {
     padding: 5px;
     text-align: left;
     overflow-x: scroll;
     width: 30%;
+    cursor: pointer;
+    transition: 1s ease;
+}
+
+td:hover:first-child{
+    background-color: rgba(165, 165, 165, 0.582);
 }
 
 .active {

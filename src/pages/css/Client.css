@@ -1,4 +1,5 @@
 .Clients {
+    z-index: 0;
     height: 980px;
     width: 100%;
     display: flex;
@@ -49,6 +50,7 @@ th, td {
 }
 
 th {
+    width: 20%;
     background-color: #f2f2f2; /* Cor de fundo do cabeçalho */
 }
 
@@ -91,6 +93,24 @@ tfoot {
 .pagination button:disabled {
     cursor: not-allowed;
     background-color: #e9e9e9;
+}
+
+.pop-up {
+    position: absolute;
+    height: 800px;
+    width: 98%;
+    left: 15px;
+    top: 120px;
+    z-index: 1;
+    border: 1px solid blue;
+}
+
+#order_by {
+    cursor: pointer;
+}
+
+#active {
+    cursor: pointer;
 }
 
 @media (max-width: 520px) {
