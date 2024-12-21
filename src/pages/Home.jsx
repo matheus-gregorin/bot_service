@@ -3,9 +3,6 @@ import "../pages/css/Home.css"
 import Navbar from "../components/Navbar"
 
 import { useEffect, useState } from "react";
-import CardClients from "../components/CardClients";
-import Banner from "../components/Banner";
-import Footer from "../components/Footer";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
 
 //Url
@@ -81,13 +78,11 @@ const Home = () => {
       
       <div className="open" onClick={toggleNavbar}>
 
-        {
-          isOpen ? <AiOutlineMenuFold className="icon" size={35} /> : <AiOutlineMenuUnfold className="icon" size={35}/>
-        } 
+        {isOpen ? <AiOutlineMenuFold className="icon" size={35} /> : <AiOutlineMenuUnfold className="icon" size={35}/>} 
         
         {isOpen ? 'Fechar Menu' : 'Abrir Menu'} </div>
 
-      <div className="home-container">
+      <div className="master-container">
 
         {
           isOpen ? <Navbar /> : ''
@@ -95,29 +90,10 @@ const Home = () => {
 
         <div className="home">
 
-          <div className="section-header">
-              <Banner />
-          </div>
 
-          <div className="label-container"> Últimos 10 clientes adicionados: </div>
-          <div className="section-body">
-
-            {clients.map((client) => (
-            <CardClients key={client.uuid} client={client} />
-            ))}
-
-          </div>
-
-          <div className="label-container-footer"> Últimos 10 itens adicionados: </div>
-          <div className="section-footer">
-
-            {items.map((item) => (
-              <Footer key={item.uuid} item={item} />
-            ))}
-
-          </div>
 
         </div>
+
       </div>
     </div>
   )

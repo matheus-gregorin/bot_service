@@ -5,7 +5,6 @@ import Login from "./components/Login"
 import "./App.css";
 
 import Home from "./pages/Home";
-import Client from "./pages/Client";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./useCases/privateRoute";
@@ -21,12 +20,6 @@ function App() {
           <Route path="/home" element={
             <PrivateRoute>
               <Home />
-            </PrivateRoute>
-          }/>
-
-          <Route path="/clients" element={
-            <PrivateRoute>
-              <Client />
             </PrivateRoute>
           }/>
 

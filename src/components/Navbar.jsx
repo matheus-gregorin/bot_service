@@ -14,10 +14,8 @@ const token = sessionStorage.getItem('x-t')
 
 const Navbar = () => {
 
-  const divRef = useRef(null);
-  const navContainer = useRef(null);
-
-  const [operator, setOperator] = useState([{ name: "..." }])
+  const photo = useRef(null);
+  const [operator, setOperator] = useState([{ name: "" }])
 
   useEffect(() => {
 
@@ -33,7 +31,6 @@ const Navbar = () => {
         });
 
         const data = await response.json();
-
         setOperator(data.operator)
 
       } catch (error) {
@@ -95,33 +92,28 @@ const Navbar = () => {
   }
 
   // Função que será chamada quando o mouse passar sobre a primeira div
-  const mostrarOutraDiv = () => {
-    if (divRef.current) {
-      divRef.current.style.display = 'flex';
+  const on = () => {
+    if (photo.current) {
+      photo.current.style.display = 'flex';
     }
   };
 
   // Função que será chamada quando o mouse sair da primeira div
-  const esconderOutraDiv = () => {
-    if (divRef.current) {
-      divRef.current.style.display = 'none';
+  const off = () => {
+    if (photo.current) {
+      photo.current.style.display = 'none';
     }
   }
 
   return (
-    <div ref={navContainer} className='nav-container'>
+    <div className='nav-container'>
 
-    <div className="img"
-        onMouseEnter={mostrarOutraDiv}
-        onMouseLeave={esconderOutraDiv}
-    >
-      <div ref={divRef} className="foto"> Alterar foto </div>
+    <div className="img" onMouseEnter={on} onMouseLeave={off}>
+      <div ref={photo} className="foto"> Alterar foto </div>
     </div>
 
     <p> 
-      { 
-        operator === null ? '' : operator.name
-      } 
+      Bem - Vindo 
     </p>
 
     <p> Status: { operator.status } </p>
@@ -131,13 +123,14 @@ const Navbar = () => {
       <nav>
         <ul>
           <li onClick={() => Nav("/home") }> <AiOutlineHome size={20} style={{ margin: '0 4px 4px 0' }} /> Home </li>
-          <li onClick={() => Nav("/clients") }> <AiOutlineProfile size={20} style={{ margin: '0 4px 4px 0' }} /> Clientes </li>
+          <li onClick={() => Nav("/home") }> <AiOutlineProfile size={20} style={{ margin: '0 4px 4px 0' }} /> Clientes </li>
           <li onClick={() => Nav("/home") }> <AiOutlineOrderedList size={20} style={{ margin: '0 4px 4px 0' }} /> Listas </li>
           <li onClick={() => Nav("/home") }> <AiOutlineFundProjectionScreen size={20} style={{ margin: '0 4px 4px 0' }} /> Graficos </li>
           <li onClick={() => Nav("/home") }> <AiOutlineSetting size={20} style={{ margin: '0 4px 4px 0' }} /> Ajustes </li>
           <li onClick={() => HandleLogout() }>  <AiOutlineLogout size={20} style={{ margin: '0 4px 4px 0' }} /> Sair </li>
         </ul>
       </nav>
+
     </div>
   )
 }
