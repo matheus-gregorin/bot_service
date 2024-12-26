@@ -2,7 +2,6 @@ import "./css/Navbar.css"
 
 // Tools
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from "react";
 import ApiService from "../useCases/fetchUseCase";
 import { AiOutlineFundProjectionScreen, AiOutlineHome, AiOutlineLogout, AiOutlineOrderedList, AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
@@ -12,10 +11,16 @@ const url = process.env.REACT_APP_API_URL
 const uuid = sessionStorage.getItem('uuid')
 const token = sessionStorage.getItem('x-t')
 
-const Navbar = () => {
+const Navbar = ({                       
+  setPageHome,
+  setPageClients,
+  setPageLists,
+  setPageGraph,
+  setPageOptions
+}) => {
 
   const photo = useRef(null);
-  const [operator, setOperator] = useState([{ name: "" }])
+  const [operator, setOperator] = useState([])
 
   useEffect(() => {
 
@@ -42,7 +47,8 @@ const Navbar = () => {
 
   }, []);
 
-  const navigate = useNavigate();
+  console.log("OPERATOR", operator)
+
   const Nav = ( page ) => {
 
     Swal.fire({
@@ -54,9 +60,49 @@ const Navbar = () => {
       showConfirmButton: false
     });
 
-    setTimeout(() => {
-      navigate(page)
-    }, 1300);
+    switch (page) {
+      case 'home':
+        setPageHome(true);
+        setPageClients(false);
+        setPageLists(false);
+        setPageGraph(false);
+        setPageOptions(false);
+        break;
+      case 'clients':
+        setPageHome(false);
+        setPageClients(true);
+        setPageLists(false);
+        setPageGraph(false);
+        setPageOptions(false);
+        break;
+      case 'lists':
+        setPageHome(false);
+        setPageClients(false);
+        setPageLists(true);
+        setPageGraph(false);
+        setPageOptions(false);
+        break;
+      case 'graph':
+        setPageHome(false);
+        setPageClients(false);
+        setPageLists(false);
+        setPageGraph(true);
+        setPageOptions(false);
+        break;
+      case 'options':
+        setPageHome(false);
+        setPageClients(false);
+        setPageLists(false);
+        setPageGraph(false);
+        setPageOptions(true);
+        break;
+      default:
+        setPageHome(true);
+        setPageClients(false);
+        setPageLists(false);
+        setPageGraph(false);
+        setPageOptions(false);;
+    }
 
   }
 
@@ -116,17 +162,17 @@ const Navbar = () => {
       Bem - Vindo 
     </p>
 
-    <p> Status: { operator.status } </p>
+    <p> Status: ONLINE </p>
 
     <hr />
 
       <nav>
         <ul>
-          <li onClick={() => Nav("/home") }> <AiOutlineHome size={20} style={{ margin: '0 4px 4px 0' }} /> Home </li>
-          <li onClick={() => Nav("/home") }> <AiOutlineProfile size={20} style={{ margin: '0 4px 4px 0' }} /> Clientes </li>
-          <li onClick={() => Nav("/home") }> <AiOutlineOrderedList size={20} style={{ margin: '0 4px 4px 0' }} /> Listas </li>
-          <li onClick={() => Nav("/home") }> <AiOutlineFundProjectionScreen size={20} style={{ margin: '0 4px 4px 0' }} /> Graficos </li>
-          <li onClick={() => Nav("/home") }> <AiOutlineSetting size={20} style={{ margin: '0 4px 4px 0' }} /> Ajustes </li>
+          <li onClick={() => Nav("home") }> <AiOutlineHome size={20} style={{ margin: '0 4px 4px 0' }} /> Home </li>
+          <li onClick={() => Nav("clients") }> <AiOutlineProfile size={20} style={{ margin: '0 4px 4px 0' }} /> Clientes </li>
+          <li onClick={() => Nav("lists") }> <AiOutlineOrderedList size={20} style={{ margin: '0 4px 4px 0' }} /> Listas </li>
+          <li onClick={() => Nav("graph") }> <AiOutlineFundProjectionScreen size={20} style={{ margin: '0 4px 4px 0' }} /> Graficos </li>
+          <li onClick={() => Nav("options") }> <AiOutlineSetting size={20} style={{ margin: '0 4px 4px 0' }} /> Ajustes </li>
           <li onClick={() => HandleLogout() }>  <AiOutlineLogout size={20} style={{ margin: '0 4px 4px 0' }} /> Sair </li>
         </ul>
       </nav>

@@ -7,7 +7,6 @@ import "./App.css";
 import Home from "./pages/Home";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PrivateRoute from "./useCases/privateRoute";
 
 function App() {
   return (
@@ -17,11 +16,7 @@ function App() {
 
           <Route path="/" element={<Login />}/>
 
-          <Route path="/home" element={
-            <PrivateRoute>
-              <Home />
-            </PrivateRoute>
-          }/>
+          <Route path="/home" element={<Home />}/>
 
         </Routes>
       </Router>

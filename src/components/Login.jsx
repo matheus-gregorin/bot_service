@@ -80,7 +80,7 @@ const Login = () => {
         // Indo para pagina Home
         setTimeout(() => {
           navigate('/home')
-        }, 2200);
+        }, 2000);
 
       });
   }

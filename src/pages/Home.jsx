@@ -4,22 +4,66 @@ import Navbar from "../components/Navbar"
 
 import { useEffect, useState } from "react";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 //Url
 const url = process.env.REACT_APP_API_URL
-const token = sessionStorage.getItem('x-t')
 
 const Home = () => {
 
-  const [isOpen, setIsOpen] = useState(true);
+  //Token
+  const token = sessionStorage.getItem('x-t')
 
-  // Função para alternar o estado da navbar
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
+  const navigate = useNavigate();
 
+  const [isOpen, setIsOpen] = useState(true)
   const [clients, setClients] = useState([])
-  const [items, setItems] = useState([])
+
+  const [pageHome, setPageHome] = useState(true)
+  const [pageClients, setPageClients] = useState(false)
+  const [pageLists, setPageLists] = useState(false)
+  const [pageGraph, setPageGraph] = useState(false)
+  const [pageOptions, setPageOptions] = useState(false)
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+
+        const response = await fetch(url + '/api/auth/valid', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + token
+          }
+        });
+
+        const data = await response.json();
+
+        // Token expirado
+        if(!data.success){
+          Swal.fire({
+            title: 'Token expirado!',
+            text: 'Necessário fazer login novamente',
+            timer: 2000,
+            width: 400,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+          navigate("/")
+          return
+        }
+
+      } catch (error) {
+        console.error('Erro ao validar token:', error);
+      }
+    };
+  
+    fetchData();
+
+  }, [token, navigate]);
 
   useEffect(() => {
 
@@ -45,56 +89,50 @@ const Home = () => {
   
     fetchData();
 
-  }, []);
+  }, [token]);
 
-  useEffect(() => {
+  console.log(clients)
 
-    const fetchData = async () => {
-      try {
-
-        const response = await fetch(url + '/api/items/all?paginator=10&order_by=desc', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token
-          }
-        });
-
-        const data = await response.json();
-
-        setItems(data.items)
-
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
-    };
-  
-    fetchData();
-
-  }, []);
+  // Função para alternar o estado da navbar
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className="master">
-      
-      <div className="open" onClick={toggleNavbar}>
-
-        {isOpen ? <AiOutlineMenuFold className="icon" size={35} /> : <AiOutlineMenuUnfold className="icon" size={35}/>} 
         
-        {isOpen ? 'Fechar Menu' : 'Abrir Menu'} </div>
+        <div className="open" onClick={toggleNavbar}>
 
-      <div className="master-container">
-
-        {
-          isOpen ? <Navbar /> : ''
-        }
-
-        <div className="home">
-
-
+          {isOpen ? <AiOutlineMenuFold className="icon" size={35} /> : <AiOutlineMenuUnfold className="icon" size={35}/>} 
+          
+          {isOpen ? 'Fechar Menu' : 'Abrir Menu'}
 
         </div>
 
-      </div>
+        <div className="master-container">
+
+          {isOpen ? <Navbar 
+                      setPageHome={setPageHome}
+                      setPageClients={setPageClients}
+                      setPageLists={setPageLists}
+                      setPageGraph={setPageGraph}
+                      setPageOptions={setPageOptions}
+                    /> : ''}
+
+            <div className="home">
+
+                { pageHome ? "HOME" : "" }
+
+                { pageClients ? "CLIENTS" : "" }
+
+                { pageLists ? "LISTS" : "" }
+
+                { pageGraph ? "GRAPH" : "" }
+
+                { pageOptions ? "OPTIONS" : "" }
+
+            </div>
+        </div>
     </div>
   )
 }
