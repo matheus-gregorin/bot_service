@@ -1,140 +1,65 @@
+
+// Css
 import "../pages/css/Home.css"
 
-import Navbar from "../components/Navbar"
+// Components
+import Filter from "../components/Filter"
 
-import { useEffect, useState } from "react";
-import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+// Hooks
+import { useEffect, useState } from "react"
 
 //Url
 const url = process.env.REACT_APP_API_URL
 
 const Home = () => {
 
-  //Token
-  const token = sessionStorage.getItem('x-t')
+    //Token
+    const token = sessionStorage.getItem('x-t')
 
-  const navigate = useNavigate();
+    const [paginator, setPaginator] = useState(10)
+    const [uriSearch, setUriSearch] = useState('/api/list/all?order_by=desc&paginator=')
 
-  const [isOpen, setIsOpen] = useState(true)
-  const [clients, setClients] = useState([])
+    const [lists, setLists] = useState([])
 
-  const [pageHome, setPageHome] = useState(true)
-  const [pageClients, setPageClients] = useState(false)
-  const [pageLists, setPageLists] = useState(false)
-  const [pageGraph, setPageGraph] = useState(false)
-  const [pageOptions, setPageOptions] = useState(false)
+    // Função que puxa todos as ultimas 10 listas
+    useEffect(() => {
 
-  useEffect(() => {
+        const fetchData = async () => {
+            try {
 
-    const fetchData = async () => {
-      try {
+                const response = await fetch(url + uriSearch + paginator, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+                });
 
-        const response = await fetch(url + '/api/auth/valid', {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token
-          }
-        });
+                const data = await response.json();
+                setLists(data.lists)
 
-        const data = await response.json();
-
-        // Token expirado
-        if(!data.success){
-          Swal.fire({
-            title: 'Token expirado!',
-            text: 'Necessário fazer login novamente',
-            timer: 2000,
-            width: 400,
-            timerProgressBar: true,
-            showConfirmButton: false
-          });
-          navigate("/")
-          return
-        }
-
-      } catch (error) {
-        console.error('Erro ao validar token:', error);
-      }
-    };
-  
-    fetchData();
-
-  }, [token, navigate]);
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-
-        const response = await fetch(url + '/api/clients/all?order_by=desc&paginator=10', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token
-          }
-        });
-
-        const data = await response.json();
-
-        setClients(data.clients)
-
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
-    };
-  
-    fetchData();
-
-  }, [token]);
-
-  console.log(clients)
-
-  // Função para alternar o estado da navbar
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <div className="master">
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+        };
         
-        <div className="open" onClick={toggleNavbar}>
+        fetchData();
 
-          {isOpen ? <AiOutlineMenuFold className="icon" size={35} /> : <AiOutlineMenuUnfold className="icon" size={35}/>} 
-          
-          {isOpen ? 'Fechar Menu' : 'Abrir Menu'}
+    }, [token, uriSearch, paginator]);
 
-        </div>
+    console.log(lists)
 
-        <div className="master-container">
+    return (
+        <div className="home">
+            <div className="home-container">
 
-          {isOpen ? <Navbar 
-                      setPageHome={setPageHome}
-                      setPageClients={setPageClients}
-                      setPageLists={setPageLists}
-                      setPageGraph={setPageGraph}
-                      setPageOptions={setPageOptions}
-                    /> : ''}
+                <Filter setUriSearch={setUriSearch} paginator={paginator} type={"lists"} setData={setLists}/>
 
-            <div className="home">
-
-                { pageHome ? "HOME" : "" }
-
-                { pageClients ? "CLIENTS" : "" }
-
-                { pageLists ? "LISTS" : "" }
-
-                { pageGraph ? "GRAPH" : "" }
-
-                { pageOptions ? "OPTIONS" : "" }
+                { lists.map((list) => ( <h2 key={ list.uuid }> { list.status } </h2> )) }
 
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Home

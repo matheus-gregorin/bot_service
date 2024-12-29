@@ -1,126 +1,25 @@
-.master {
+.home {
     height: 1050px;
     width: 100%;
     display: flex;
-    flex-direction: column;
-}
-
-.open {
-    background-color: rgba(231, 231, 231, 0.644);
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 500;
-
-    padding: 5px 0;
 }
 
-.icon {
-    transition: 0.8s ease;
-    cursor: pointer;
-    margin-left: 20px;
-    margin-right: 10px;
-}
-
-.icon:hover {
-    transform: scale(1.1);
-}
-
-.sidebar {
-    display: none;
-}
-
-.sidebar-open {
-    display: flex;
-}
-
-.master-container {
-    width: 100%;
-    height: 980px;
-    display: flex;
-    flex-direction: row;
-    margin-top: 5px;
-}
-
-.home {
-    height: 980px;
+.home-container {
+    height: 1048px;
     width: 98%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-y: hidden;
+    border: 2px solid green;
 }
 
-.section-header {
-    height: 310px;
-    width: 100%;
-    margin: 5px 0;
+/* @media (max-width: 520px) {
 }
 
-.label-container {
-    height: 10px;
-    width: 100%;
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    padding-left: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 500;
-    text-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.3);
-    color: rgba(78, 78, 78, 0.733);
-    margin-top: 28px;
-    margin-bottom: 5px;
+@media (min-width: 520px) and (max-width: 800px) {
 }
 
-.label-container-footer {
-    height: 10px;
-    width: 100%;
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    padding-left: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 500;
-    text-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.3);
-    color: rgba(78, 78, 78, 0.733);
-    margin-top: 18px;
-}
+@media (min-width: 801px) and (max-width: 1030px) {
 
-.section-body {
-    height: 280px;
-    width: 96%;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    overflow-x: scroll;
-    white-space: nowrap;
-}
-
-.section-footer {
-    height: 280px;
-    width: 96%;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    overflow-x: scroll;
-    white-space: nowrap;
-    margin: 10px 0 10px 0; 
-}
-
-@media (max-width: 500px) {
-    .label-container {
-        font-size: 1.1rem;
-    }
-}
+} */

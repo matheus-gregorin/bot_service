@@ -51,7 +51,7 @@ export default class ApiService {
         },
         body: body ? JSON.stringify(body) : null,
       };
-  
+
       try {
         const response = await fetch(url, options);
         const data = await response.json();

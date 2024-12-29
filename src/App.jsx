@@ -4,7 +4,7 @@ import Login from "./components/Login"
 // Css
 import "./App.css";
 
-import Home from "./pages/Home";
+import Master from "./pages/Master";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function App() {
 
           <Route path="/" element={<Login />}/>
 
-          <Route path="/home" element={<Home />}/>
+          <Route path="/index" element={<Master />}/>
 
         </Routes>
       </Router>

@@ -79,7 +79,7 @@ const Login = () => {
 
         // Indo para pagina Home
         setTimeout(() => {
-          navigate('/home')
+          navigate('/index')
         }, 2000);
 
       });

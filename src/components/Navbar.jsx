@@ -1,59 +1,28 @@
+// Css
 import "./css/Navbar.css"
 
 // Tools
 import Swal from 'sweetalert2';
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import ApiService from "../useCases/fetchUseCase";
 import { AiOutlineFundProjectionScreen, AiOutlineHome, AiOutlineLogout, AiOutlineOrderedList, AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 //Url
 const url = process.env.REACT_APP_API_URL
-const uuid = sessionStorage.getItem('uuid')
-const token = sessionStorage.getItem('x-t')
 
-const Navbar = ({                       
-  setPageHome,
-  setPageClients,
-  setPageLists,
-  setPageGraph,
-  setPageOptions
-}) => {
+const Navbar = ({ setPageHome, setPageClients, setPageLists, setPageGraph, setPageOptions, operatorName }) => {
 
   const photo = useRef(null);
-  const [operator, setOperator] = useState([])
 
-  useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-
-        const response = await fetch(url + '/api/operators/get/' + uuid, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token
-          }
-        });
-
-        const data = await response.json();
-        setOperator(data.operator)
-
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
-    };
-  
-    fetchData();
-
-  }, []);
-
-  console.log("OPERATOR", operator)
+  const navigate = useNavigate();
 
   const Nav = ( page ) => {
 
     Swal.fire({
       title: 'Carregando...',
       text: '',
+      html: '<img src="/loading.gif" alt="Loading" style="width: 50px; height: 50px;">',
       timer: 2200,
       width: 250,
       timerProgressBar: true,
@@ -108,30 +77,44 @@ const Navbar = ({
 
   const HandleLogout = () => {
 
+    // Uuid
+    const uuid = sessionStorage.getItem('uuid')
+
     const api = new ApiService(url)
-    api.post('/api/auth/logout')
+    api.post('/api/auth/logout/' + uuid)
     .then(response => {
 
-    // Failed
-    if(!response.success){
-      Swal.fire({
-        title: 'Erro!',
-        text: response.message,
-        icon: 'error',
-        confirmButtonText: 'Fechar'
-      });
-      return
-    }
+      // Failed
+      if(!response.success){
+        Swal.fire({
+          title: 'Erro!',
+          text: response.message,
+          icon: 'error',
+          confirmButtonText: 'Fechar'
+        });
+        return
+      }
 
-    // Success
-    sessionStorage.setItem('x-t', '');
-    sessionStorage.setItem('x-t-e', '');
-    sessionStorage.setItem('uuid', '');
-    
-    // Indo para pagina Home
-    setTimeout(() => {
-      Nav('/')
-    }, 100);
+      // Success
+      sessionStorage.setItem('x-t', '');
+      sessionStorage.setItem('x-t-e', '');
+      sessionStorage.setItem('uuid', '');
+
+      Swal.fire({
+        title: 'Carregando...',
+        html: '<img src="/loading.gif" alt="Loading" style="width: 50px; height: 50px;">',
+        text: '',
+        timer: 2000,
+        width: 250,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+      
+      setTimeout(() => {
+        
+        navigate('/')
+
+      }, 200);
 
     })
 
@@ -159,10 +142,12 @@ const Navbar = ({
     </div>
 
     <p> 
-      Bem - Vindo 
+      {operatorName ? operatorName : ""}
     </p>
 
-    <p> Status: ONLINE </p>
+    <p> 
+      ONLINE
+    </p>
 
     <hr />
 
