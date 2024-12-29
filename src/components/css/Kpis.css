@@ -1,0 +1,49 @@
+.kpis {
+    height: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+}
+
+.kpis-container {
+    height: 385px;
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: scroll;
+    border: 1px solid green;
+}
+
+.kpis-container label{
+    height: 50px;
+}
+
+.orders{
+    display: flex;
+    flex-direction: row;
+}
+
+.kpis-card {
+    height: 200px;
+    min-width: 10%;
+    padding: 15px;
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid blue;
+}
+
+.kpis-card p{
+    height: 10px;
+    font-size: 1rem;
+    margin: 10px 5px;
+}

@@ -1,20 +1,24 @@
 
 // Css
-import Kpis from "../components/Kpis"
-import "../pages/css/Home.css"
+import "../pages/css/Lists.css"
 
 // Components
+import Filter from "../components/Filter"
 
 // Hooks
 import { useEffect, useState } from "react"
+import CardList from "../components/CardList"
 
 //Url
 const url = process.env.REACT_APP_API_URL
 
-const Home = () => {
+const Lists = () => {
 
     //Token
     const token = sessionStorage.getItem('x-t')
+
+    const [paginator, setPaginator] = useState(10)
+    const [uriSearch, setUriSearch] = useState('/api/list/all?order_by=desc&paginator=')
 
     const [lists, setLists] = useState([])
 
@@ -24,7 +28,7 @@ const Home = () => {
         const fetchData = async () => {
             try {
 
-                const response = await fetch(url + '/api/list/all?order_by=desc', {
+                const response = await fetch(url + uriSearch + paginator, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -42,17 +46,19 @@ const Home = () => {
         
         fetchData();
 
-    }, [token]);
+    }, [token, uriSearch, paginator]);
 
     return (
-        <div className="home">
-            <div className="home-container">
+        <div className="lists">
+            <div className="lists-container">
 
-                <Kpis lists={lists} />
+                <Filter setUriSearch={setUriSearch} paginator={paginator} type={"lists"} setData={setLists}/>
+
+                <CardList setLists={setLists} lists={lists} uriSearch={uriSearch} paginator={paginator} setPaginator={setPaginator}/>
 
             </div>
         </div>
     )
 }
 
-export default Home
+export default Lists

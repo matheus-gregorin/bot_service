@@ -11,6 +11,7 @@ import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Home from "./Home";
+import Lists from "./Lists";
 
 //Url
 const url = process.env.REACT_APP_API_URL
@@ -126,7 +127,7 @@ const Master = () => {
 
                 { pageClients ? "CLIENTS" : "" }
 
-                { pageLists ? "LISTS" : "" }
+                { pageLists ? <Lists /> : "" }
 
                 { pageGraph ? "GRAPH" : "" }
 

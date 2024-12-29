@@ -1,10 +1,10 @@
 // Css
-import Swal from "sweetalert2"
-import ApiService from "../useCases/fetchUseCase"
 import "./css/Filter.css"
 
 // Tools
 import { AiOutlineSearch } from "react-icons/ai"
+import Swal from "sweetalert2"
+import ApiService from "../useCases/fetchUseCase"
 
 //Url
 const url = process.env.REACT_APP_API_URL

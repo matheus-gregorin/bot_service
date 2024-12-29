@@ -1,4 +1,4 @@
-.home {
+.lists {
     height: 980px;
     width: 100%;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.home-container {
+.lists-container {
     height: 980px;
     width: 98%;
     display: flex;
