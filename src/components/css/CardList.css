@@ -39,21 +39,3 @@ tbody td {
     white-space: nowrap; /* Impede quebra de linha */
     /* text-overflow: clip; Adiciona os "três pontinhos" */
 }
-  
-/* Rodapé da tabela */
-tfoot tr {
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    background-color: rgba(255, 255, 255, 0.295); /* Cor de fundo do rodapé */
-    color: rgba(94, 94, 94, 0.774);
-    text-align: left;
-}
-
-tfoot td button{
-    width: 40%;
-    padding: 2px;
-    margin: 0;
-}

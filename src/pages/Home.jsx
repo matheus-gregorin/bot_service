@@ -50,6 +50,8 @@ const Home = () => {
 
                 <Kpis lists={lists} />
 
+                <div> 2222 </div>
+
             </div>
         </div>
     )

@@ -8,6 +8,8 @@ import Filter from "../components/Filter"
 // Hooks
 import { useEffect, useState } from "react"
 import CardList from "../components/CardList"
+import Swal from "sweetalert2"
+import ApiService from "../useCases/fetchUseCase"
 
 //Url
 const url = process.env.REACT_APP_API_URL
@@ -48,13 +50,44 @@ const Lists = () => {
 
     }, [token, uriSearch, paginator]);
 
+    const HandleSearch = ( newPaginator ) => {
+
+        const api = new ApiService(url)
+
+        api.get(uriSearch + newPaginator)
+          .then(response => {
+            
+            // Failed
+            if(!response.success){
+              Swal.fire({
+                title: 'Erro!',
+                text: response.message,
+                icon: 'error',
+                confirmButtonText: 'Fechar'
+              });
+              return
+            }
+
+            console.log(response, uriSearch + newPaginator)
+            setLists(response.lists)
+            setPaginator(newPaginator)
+          });
+        return
+
+    }
+
     return (
         <div className="lists">
             <div className="lists-container">
 
                 <Filter setUriSearch={setUriSearch} paginator={paginator} type={"lists"} setData={setLists}/>
 
-                <CardList setLists={setLists} lists={lists} uriSearch={uriSearch} paginator={paginator} setPaginator={setPaginator}/>
+                <CardList lists={lists}/>
+
+                <div className="search-container">
+                    <button disabled={ (paginator <= 10) ? false : false } onClick={ ()=> HandleSearch( paginator - 10 ) } > Anterior </button>  
+                    <button disabled={ (paginator >= Object.keys(lists).length) ? false : false } onClick={ ()=> HandleSearch( paginator + 10 ) } > Próximo </button>
+                </div>
 
             </div>
         </div>

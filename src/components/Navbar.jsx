@@ -23,7 +23,7 @@ const Navbar = ({ setPageHome, setPageClients, setPageLists, setPageGraph, setPa
       title: 'Carregando...',
       text: '',
       html: '<img src="/loading.gif" alt="Loading" style="width: 50px; height: 50px;">',
-      timer: 2200,
+      timer: 1000,
       width: 250,
       timerProgressBar: true,
       showConfirmButton: false

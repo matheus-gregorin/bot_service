@@ -2,40 +2,10 @@
 import "./css/CardList.css"
 
 // Tools
-import ApiService from "../useCases/fetchUseCase"
-import Swal from "sweetalert2"
 
 //Url
-const url = process.env.REACT_APP_API_URL
 
-const CardList = ({ setLists, lists, uriSearch, paginator, setPaginator }) => {
-
-  const HandleSearch = ( newPaginator ) => {
-
-        const api = new ApiService(url)
-
-        api.get(uriSearch + newPaginator)
-          .then(response => {
-            
-            // Failed
-            if(!response.success){
-              Swal.fire({
-                title: 'Erro!',
-                text: response.message,
-                icon: 'error',
-                confirmButtonText: 'Fechar'
-              });
-              return
-            }
-
-            console.log(uriSearch + newPaginator)
-
-            setLists(response.lists)
-            setPaginator(newPaginator)
-          });
-        return
-
-  }
+const CardList = ({ lists }) => {
 
   return (
     <div className="card-list">
@@ -65,12 +35,6 @@ const CardList = ({ setLists, lists, uriSearch, paginator, setPaginator }) => {
               ))
             }
           </tbody>
-          <tfoot>
-            <tr>
-              <button disabled={ (paginator <= 10) ? true : false } onClick={ ()=> HandleSearch( paginator - 10 ) } > Anterior </button>  
-              <button disabled={ (paginator >= Object.keys(lists).length) ? true : false } onClick={ ()=> HandleSearch( paginator + 10 ) } > Próximo </button>
-            </tr>
-          </tfoot>
         </table>
 
     </div>

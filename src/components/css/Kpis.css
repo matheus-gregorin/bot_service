@@ -1,15 +1,15 @@
 .kpis {
-    height: 400px;
+    height: 260px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
+    margin: 0 0 20px 0;
 }
 
 .kpis-container {
-    height: 385px;
+    height: 180px;
     width: 98%;
     display: flex;
     flex-direction: column;
@@ -17,11 +17,16 @@
     justify-content: center;
     align-items: flex-start;
     overflow-x: scroll;
-    border: 1px solid green;
 }
 
-.kpis-container label{
-    height: 50px;
+label{
+    font-size: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
 }
 
 .orders{
@@ -29,8 +34,8 @@
     flex-direction: row;
 }
 
-.kpis-card {
-    height: 200px;
+.kpis-card-red {
+    height: 150px;
     min-width: 10%;
     padding: 15px;
     margin: 0 15px;
@@ -39,10 +44,84 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: 1px solid blue;
+    border-radius: 8px;
+    background-color: rgba(230, 131, 118, 0.658);
+    color: black;
+    /* box-shadow: 5px 5px 5px 2px rgba(133, 133, 133, 0.274); */
 }
 
-.kpis-card p{
+.kpis-card-yellow {
+    height: 150px;
+    min-width: 10%;
+    padding: 15px;
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 8px;
+    background-color: rgba(228, 230, 118, 0.658);
+    color: black;
+    /* box-shadow: 5px 5px 5px 2px rgba(133, 133, 133, 0.274); */
+}
+
+.kpis-card-blue {
+    height: 150px;
+    min-width: 10%;
+    padding: 15px;
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(118, 195, 230, 0.678);
+    color: black;
+    border-radius: 8px;
+    /* box-shadow: 5px 5px 5px 2px rgba(133, 133, 133, 0.274); */
+}
+
+.options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.option {
+    background-color: rgba(122, 122, 122, 0.719);
+    height: 15px;
+    width: 50px;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(192, 192, 192, 0.699);
+    cursor: pointer;
+    transition: 1s ease;
+}
+
+.option:hover {
+    background-color: rgb(146, 146, 146);
+    color: white;
+}
+
+.kpis-card-red p{
+    height: 10px;
+    font-size: 1rem;
+    margin: 10px 5px;
+}
+
+.kpis-card-yellow p{
+    height: 10px;
+    font-size: 1rem;
+    margin: 10px 5px;
+}
+
+.kpis-card-blue p{
     height: 10px;
     font-size: 1rem;
     margin: 10px 5px;
