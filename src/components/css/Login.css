@@ -34,6 +34,12 @@ label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.login-label{
+    display: flex;
+    justify-content: baseline;
+    align-items: start;
+}
+
 input {
     height: 35px;
     width: 100%;

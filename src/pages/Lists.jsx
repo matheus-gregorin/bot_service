@@ -85,8 +85,8 @@ const Lists = () => {
                 <CardList lists={lists}/>
 
                 <div className="search-container">
-                    <button disabled={ (paginator <= 10) ? false : false } onClick={ ()=> HandleSearch( paginator - 10 ) } > Anterior </button>  
-                    <button disabled={ (paginator >= Object.keys(lists).length) ? false : false } onClick={ ()=> HandleSearch( paginator + 10 ) } > Próximo </button>
+                    <button disabled={ (paginator <= 10) ? true : false } onClick={ ()=> HandleSearch( paginator - 10 ) } > Anterior </button>  
+                    <button disabled={ (paginator >= Object.keys(lists).length) ? true : false } onClick={ ()=> HandleSearch( paginator + 10 ) } > Próximo </button>
                 </div>
 
             </div>

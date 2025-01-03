@@ -7,22 +7,23 @@ import "./css/Kpis.css"
 const Kpis = ({ lists }) => {
 
     const months = [ 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ]
-    const datas = { 'janeiro': 0, 'fevereiro': 0, 'março': 0, 'abril': 0, 'maio': 0, 'junho': 0, 'julho': 0, 'agosto': 0, 'setembro': 0, 'outubro': 0, 'novembro': 0, 'dezembro': 0 }
+    const datas = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 
     lists.map((list) => {
-        const currentYear = new Date().getFullYear().toString();
-        const date = new Date(list.created_at);
 
+        const currentYear = new Date().getFullYear().toString();
+
+        const date = new Date(list.created_at);
         const year = date.toLocaleString("pt-BR", { year: "numeric" });
-        const monthName = date.toLocaleString("pt-BR", { month: "long" });
+        const month = date.getMonth();
 
         if(year === currentYear){
-            datas[monthName] += 1
+            datas[month] += 1
         }
         return true
-      });
+    });
 
-      const HandleColor = ( value ) => {
+    const HandleColor = ( value ) => {
         if(value >= 5){
             return "blues"
         } else if ( value < 5 && value >= 2){
@@ -30,7 +31,7 @@ const Kpis = ({ lists }) => {
         } else {
             return "red"
         }
-      }
+    }
 
     return (
         <div className="kpis">
@@ -39,7 +40,7 @@ const Kpis = ({ lists }) => {
                 <div className="orders" id="orders">
                     {
                         months.map((month, i) => ( 
-                            <div className={"kpis-card-" + HandleColor(datas[month])} id="month" key={i}>  
+                            <div className={"kpis-card-" + HandleColor(datas[i])} id="month" key={i}>  
                                 <div className="options"> 
                                     { month.toUpperCase() }
                                     <select className="option"> 
@@ -47,7 +48,7 @@ const Kpis = ({ lists }) => {
                                         <option value=""> ABC </option>
                                     </select>
                                 </div> 
-                                <p> { datas[month] } </p> 
+                                <p> { datas[i] } </p> 
                             </div> 
                         ))
                     }

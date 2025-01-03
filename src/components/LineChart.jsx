@@ -1,31 +1,27 @@
 
 // Css
-import "../pages/css/Home.css"
+import "../components/css/LineChart.css"
 
-// Components
-import Kpis from "../components/Kpis"
-
-// Hooks
-import { useEffect, useState } from "react"
-import Tags from "../components/Tags"
+// Tools
+import React, { useEffect, useState } from "react";
 
 //Url
 const url = process.env.REACT_APP_API_URL
 
-const Home = () => {
+const LineChart = () => {
 
     //Token
     const token = sessionStorage.getItem('x-t')
 
-    const [lists, setLists] = useState([])
+    const [data, setData] = useState([])
 
-    // Função que puxa todos as listas
+    // Função que puxa todos as ultimas 10 listas
     useEffect(() => {
 
         const fetchData = async () => {
             try {
 
-                const response = await fetch(url + '/api/list/all?order_by=desc', {
+                const response = await fetch(url + '/api/list/graph/all?order_by=desc', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -34,7 +30,7 @@ const Home = () => {
                 });
 
                 const data = await response.json();
-                setLists(data.lists)
+                setData(data.graph)
 
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
@@ -46,16 +42,10 @@ const Home = () => {
     }, [token]);
 
     return (
-        <div className="home">
-            <div className="home-container">
-
-                <Kpis lists={lists} />
-
-                <Tags />
-
-            </div>
+        <div>
+            {data}
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default LineChart;

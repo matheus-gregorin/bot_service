@@ -102,12 +102,12 @@ const Login = () => {
 
         <div className="card">
 
-          <label htmlFor="email"> Email: </label>
+          <label className="login-label" htmlFor="email"> Email: </label>
           <input id="email" type="text" />
 
           <div className="error-container"> <p></p> </div>
 
-          <label htmlFor="password"> Senha: </label>
+          <label className="login-label" htmlFor="password"> Senha: </label>
           <input id="password" type="password" />
 
           <div className="error-container"> <p></p> </div>
