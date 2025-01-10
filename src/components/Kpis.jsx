@@ -1,10 +1,45 @@
 
 // Css
+import { useEffect, useState } from "react"
 import "./css/Kpis.css"
 
 // Tools
 
-const Kpis = ({ lists }) => {
+//Url
+const url = process.env.REACT_APP_API_URL
+
+const Kpis = () => {
+
+    //Token
+    const token = sessionStorage.getItem('x-t')
+
+    const [lists, setLists] = useState([])
+    
+    // Função que puxa todos as listas
+    useEffect(() => {
+    
+        const fetchData = async () => {
+            try {
+    
+                const response = await fetch(url + '/api/list/all?order_by=desc', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+                });
+    
+                const data = await response.json();
+                setLists(data.lists)
+    
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+        };
+            
+        fetchData();
+    
+    }, [token, setLists]);
 
     const months = [ 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ]
     const datas = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]

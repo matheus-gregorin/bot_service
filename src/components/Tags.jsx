@@ -23,7 +23,7 @@ const Tags = () => {
             const fetchData = async () => {
                 try {
     
-                    const response = await fetch(url + '/api/list/graph/all?order_by=desc', {
+                    const response = await fetch(url + '/api/list/graph/all', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
@@ -45,16 +45,37 @@ const Tags = () => {
         }, [token]);
 
   return (
-    <div>
-        {
-            months.map((month, i) => (
-                <div>
-                    {month}
-                    <br />
-                    {valuesPerMonth[i]}
-                </div>
-            ))
-        }
+    <div className="tags">
+        <label htmlFor=""> Valor arrecadado por Mês: </label>
+        <div className="tags-container">
+
+            <div>
+                {
+                    months.map((month, i) => (
+                        <div key={i} className="progress-bar">
+                            <div className="filler" style={{ width: `${listPerMonth[i]}%` }}>
+                                {month}:
+                                <br />
+                                Lists: {listPerMonth[i]}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div>
+                {
+                    months.map((month, i) => (
+                        <div key={i}>
+                            {month}
+                            <br />
+                            Values: {valuesPerMonth[i]}
+                        </div>
+                    ))
+                }
+            </div>
+
+        </div>
     </div>
   )
 }
