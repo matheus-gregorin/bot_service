@@ -27,7 +27,7 @@ const CardList = ({ lists }) => {
                 <tr key={ list.uuid }>
                   <td>{ list.uuid }</td>
                   <td>{ list.status }</td>
-                  <td> Clique aqui </td>
+                  <td>{ list.client.name }</td>
                   <td>{ list.form_purchase }</td>
                   <td>{ list.date_schedule }</td>
                 </tr>

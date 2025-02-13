@@ -39,3 +39,21 @@ tbody td {
     white-space: nowrap; /* Impede quebra de linha */
     /* text-overflow: clip; Adiciona os "três pontinhos" */
 }
+
+tbody td:nth-child(1) {
+    cursor: pointer;
+}
+
+tbody td:nth-child(3) {
+    color: darkblue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+tbody td:nth-child(1):hover {
+    background-color: rgba(161, 161, 161, 0.295);
+}
+
+tbody td:nth-child(3):hover {
+    background-color: rgba(161, 161, 161, 0.295);
+}

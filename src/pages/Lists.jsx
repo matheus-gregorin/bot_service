@@ -39,6 +39,7 @@ const Lists = () => {
                 });
 
                 const data = await response.json();
+                console.log("DATA AQUI", data)
                 setLists(data.lists)
 
             } catch (error) {
